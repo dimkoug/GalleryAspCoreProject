@@ -1,0 +1,52 @@
+﻿@model GalleryManagement.ViewModels.FolderVm
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Folder</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ParentId">
+                    <option value="">Select</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryFolder" class="control-label"></label>
+                <select asp-for="CategoryFolder" class="form-control" asp-items="ViewBag.Categories"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagFolder" class="control-label"></label>
+                <select asp-for="TagFolder" class="form-control" asp-items="ViewBag.Tags"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Files" class="control-label"></label>
+                <input asp-for="Files" class="form-control" type="file" multiple />
+                <span asp-validation-for="Files" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
